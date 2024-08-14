@@ -4,31 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Player</title>
+    <title>Contagious Laughter</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
-<body>
-    <h1>Audio Player</h1>
+<body class="limited">
+    <h1>Contagious Laughter</h1>
+    <h2>Listen and Discover What Makes Laughter Spread</h2>
+    <img src="laughter_types.jpg" alt="" class="img">
+    <p class="description">Ever found yourself laughing along with others, even when you didn't quite catch the joke? That's the power of
+    contagious laughter! This collection of laughter recordings, contributed by people like you, offers a glimpse into the
+    world of contagious laughter.
+    <br></br>
+    Choose the gender of the laugher and contagiousness category to start playing laughter clips.
+    </p>
 
     <!-- Filters for audio files -->
+    <section class="filter-container">
+    <div class="wrapper">
     <label for="genderFilter">Gender:</label>
     <select id="genderFilter">
+        <option value="x" disabled selected>Select an option</option>
         <option value="">All</option>
         <option value="men">Men</option>
         <option value="women">Women</option>
     </select>
+    </div>
 
-    <label for="ratingFilter">Rating:</label>
-    <select id="ratingFilter">
-        <option value="">All</option>
-        <option value="4">4</option>
-        <option value="3">3</option>
-        <option value="2">2</option>
-        <option value="1">1</option>
-    </select>
-
+    <div class="wrapper">
     <label for="categoryFilter">Category:</label>
     <select id="categoryFilter">
+        <option value="x" disabled selected>Select an option</option>
         <option value="">All</option>
         <option value="verylow">Very low</option>
         <option value="low">Low</option>
@@ -36,80 +48,96 @@
         <option value="veryhigh">Very high</option>
         <!-- Add more categories as needed -->
     </select>
-    <!-- Dropdown for selecting an audio file -->
-    <label for="audioSelect">Select an audio file:</label>
-    <select id="audioSelect">
-        <option value="" disabled selected>Select an option</option>
-        <!-- Add more options corresponding to your audio files -->
-    </select>
+    </div>
 
-    <!-- Button to play the selected audio file -->
-    <button id="playButton">Play</button>
+
+    </section>
+
+
 
     <!-- Audio element to play the selected sound -->
-    <audio id="audioPlayer" controls>
-        Your browser does not support the audio element.
-    </audio>
+    <section id="audioContainer" class="audio-container">
+        <!-- Audio players will be dynamically added here -->
+    </section>
+    <div class='customAlert'>
+        <p class='message'></p>
+        <input type='button' class='confirmButton' value='Ok'>
+    </div>
 
-    <script>
+    <script type="text/javascript">
+        const customAlert = document.querySelector('.customAlert');
+        const confirmButton = customAlert.querySelector('.confirmButton');
+        function showCustomAlert(message) {
+            customAlert.querySelector('.message').textContent = message;
+            customAlert.style.display = 'block';
+        }
+        function hideCustomAlert() {
+            customAlert.style.display = 'none';
+        }
+        confirmButton.addEventListener('click', hideCustomAlert);
+
         // Array of audio file names
         const audioFiles = [
             { "id": "13c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "83c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "110c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "14c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "84c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "62c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "93c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "49c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "85c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "101c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "64c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "33c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "107c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "86c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "11c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "87c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "91c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "45c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "34c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "125c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "9c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "122c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "123c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "37c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "120c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "41c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "44c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "47c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "38c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "42c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "1c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "31c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "117c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "15c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "105c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "103c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "40c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "58c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "73c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "77c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "39c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "28c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "12c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "102c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "127c.wav", "gender": "men", "rating": "3", "category": "high" }, { "id": "106c.wav", "gender": "men", "rating": "2", "category": "low" }, { "id": "121c.wav", "gender": "men", "rating": "2", "category": "low" }, { "id": "2c.wav", "gender": "men", "rating": "2", "category": "low" }, { "id": "20c.wav", "gender": "men", "rating": "2", "category": "low" }, { "id": "115c.wav", "gender": "men", "rating": "2", "category": "low" }, { "id": "81c.wav", "gender": "men", "rating": "2", "category": "low" }, { "id": "60c.wav", "gender": "men", "rating": "2", "category": "low" }, { "id": "92c.wav", "gender": "men", "rating": "2", "category": "low" }, { "id": "78c.wav", "gender": "men", "rating": "2", "category": "low" }, { "id": "18c.wav", "gender": "men", "rating": "4", "category": "veryhigh" }, { "id": "67c.wav", "gender": "men", "rating": "4", "category": "veryhigh" }, { "id": "88c.wav", "gender": "men", "rating": "4", "category": "veryhigh" }, { "id": "59c.wav", "gender": "men", "rating": "4", "category": "veryhigh" }, { "id": "126c.wav", "gender": "men", "rating": "4", "category": "veryhigh" }, { "id": "116c.wav", "gender": "men", "rating": "4", "category": "veryhigh" }, { "id": "111c.wav", "gender": "men", "rating": "4", "category": "veryhigh" }, { "id": "43c.wav", "gender": "men", "rating": "4", "category": "veryhigh" }, { "id": "35c.wav", "gender": "men", "rating": "4", "category": "veryhigh" }, { "id": "63c.wav", "gender": "men", "rating": "4", "category": "veryhigh" }, { "id": "113c.wav", "gender": "men", "rating": "4", "category": "veryhigh" }, { "id": "30c.wav", "gender": "men", "rating": "4", "category": "veryhigh" }, { "id": "124c.wav", "gender": "men", "rating": "4", "category": "veryhigh" }, { "id": "3c.wav", "gender": "men", "rating": "1", "category": "verylow" }, { "id": "29c.wav", "gender": "men", "rating": "1", "category": "verylow" }, { "id": "100c.wav", "gender": "men", "rating": "1", "category": "verylow" }, { "id": "40c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "99c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "107c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "48c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "71c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "98c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "114c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "118c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "17c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "52c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "68c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "25c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "75c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "53c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "66c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "69c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "96c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "89c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "50c.wav", "gender": "women", "rating": "3", "category": "high" }, { "id": "58c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "24c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "65c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "36c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "79c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "74c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "104c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "19c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "23c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "21c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "70c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "7c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "27c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "22c.wav", "gender": "women", "rating": "2", "category": "low" }, { "id": "80c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "72c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "54c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "76c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "56c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "26c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "94c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "32c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "10c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "128c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "119c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "6c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "97c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "61c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "82c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "112c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "4c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "16c.wav", "gender": "women", "rating": "3", "category": "low" }, { "id": "51c.wav", "gender": "women", "rating": "4", "category": "veryhigh" }, { "id": "5c.wav", "gender": "women", "rating": "4", "category": "veryhigh" }, { "id": "55c.wav", "gender": "women", "rating": "4", "category": "veryhigh" }, { "id": "90c.wav", "gender": "women", "rating": "4", "category": "veryhigh" }, { "id": "8c.wav", "gender": "women", "rating": "4", "category": "veryhigh" }, { "id": "95c.wav", "gender": "women", "rating": "2", "category": "verylow" }, { "id": "57c.wav", "gender": "women", "rating": "2", "category": "verylow" }, { "id": "46c.wav", "gender": "women", "rating": "2", "category": "verylow" }
-    ];
+        ];
 
 
         // Get the select element
         const audioSelect = document.getElementById('audioSelect');
         const genderFilter = document.getElementById('genderFilter');
-        const ratingFilter = document.getElementById('ratingFilter');
         const categoryFilter = document.getElementById('categoryFilter');
 
-        // Function to populate the dropdown with filtered options
-        function updateDropdown() {
-            // Clear current options
-            audioSelect.innerHTML = '<option value="" disabled selected>Select an option</option>';
+        /**
+         * Updates the audio players based on the selected filter values.
+         *
+         * This function clears the current audio players, gets the selected filter values,
+         * filters the audio files based on the selected criteria, and creates new audio players
+         * for the filtered files.
+         *
+         * @param {void} None
+         * @return {void} None
+         */
+        function updateAudioPlayers() {
+            // Clear current audio players
+            audioContainer.innerHTML = '';
 
             // Get selected filter values
             const selectedGender = genderFilter.value;
-            const selectedRating = ratingFilter.value;
             const selectedCategory = categoryFilter.value;
 
             // Filter the audio files based on selected criteria
             const filteredFiles = audioFiles.filter(file => {
                 return (selectedGender === '' || file.gender === selectedGender) &&
-                    (selectedRating === '' || file.rating.toString() === selectedRating) &&
                     (selectedCategory === '' || file.category === selectedCategory);
             });
-           // Populate the dropdown with the filtered audio files
+
+            // Create audio players for filtered files
             filteredFiles.forEach(file => {
-                    const option = document.createElement('option');
-                    option.value = file.id;
-                    option.textContent = file.id.replace('.wav', ''); // Remove file extension for display
-                    audioSelect.appendChild(option);
+                const audioItem = document.createElement('div');
+                audioItem.className = 'audio-item';
+
+                const audio = document.createElement('audio');
+                audio.controls = true;
+                audio.controlsList = "nodownload";
+                audio.src = `audio/${file.id}`;
+
+                const label = document.createElement('p');
+                label.textContent = `${file.id.replace('.wav', '')} (${file.gender}, ${file.category})`;
+
+                audioItem.appendChild(audio);
+                audioItem.appendChild(label);
+                audioContainer.appendChild(audioItem);
             });
         }
 
+
         // Add event listeners to filter dropdowns to trigger the updateDropdown function
-        genderFilter.addEventListener('change', updateDropdown);
-        ratingFilter.addEventListener('change', updateDropdown);
-        categoryFilter.addEventListener('change', updateDropdown);
+        genderFilter.addEventListener('change', updateAudioPlayers);
+        categoryFilter.addEventListener('change', updateAudioPlayers);
 
         // Initial population of the dropdown
-        updateDropdown();
+        updateAudioPlayers();
 
-        // JavaScript to handle playing the selected audio file
-        document.getElementById('playButton').addEventListener('click', function () {
-            const audioSelect = document.getElementById('audioSelect');
-            const audioPlayer = document.getElementById('audioPlayer');
-            const selectedFile = audioSelect.value;
-
-            if (selectedFile) {
-                audioPlayer.src = `audio/${selectedFile}`;
-                audioPlayer.play();
-            } else {
-                alert('Please select an audio file first.');
-            }
-        });
     </script>
 </body>
 
