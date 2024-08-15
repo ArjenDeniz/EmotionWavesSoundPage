@@ -28,12 +28,12 @@
     <!-- Filters for audio files -->
     <section class="filter-container">
     <div class="wrapper">
-    <label for="genderFilter">Gender:</label>
+    <label for="genderFilter">Sex:</label>
     <select id="genderFilter">
         <option value="x" disabled selected>Select an option</option>
         <option value="">All</option>
-        <option value="men">Men</option>
-        <option value="women">Women</option>
+        <option value="men">Male</option>
+        <option value="women">Female</option>
     </select>
     </div>
 
@@ -111,7 +111,7 @@
             });
 
             // Create audio players for filtered files
-            filteredFiles.forEach(file => {
+            filteredFiles.forEach((file,index) => {
                 const audioItem = document.createElement('div');
                 audioItem.className = 'audio-item';
 
@@ -126,6 +126,10 @@
                 audioItem.appendChild(audio);
                 audioItem.appendChild(label);
                 audioContainer.appendChild(audioItem);
+                // Trigger the animation after a short delay
+                setTimeout(() => {
+                    audioItem.classList.add('show');
+                }, 50 * index);
             });
         }
 
