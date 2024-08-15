@@ -136,7 +136,16 @@
                 } else{
                     gender_text = "Male"
                 }
-                label.textContent = `${gender_text}, ${file.category}`;
+                if (file.category === "veryhigh"){
+                    category_text = "Very high"
+                }else if (file.category === "high"){
+                    category_text = "High"
+                }else if (file.category === "low"){
+                    category_text = "Low"
+                }else if (file.category === "verylow"){
+                    category_text = "Very low"
+                }
+                label.textContent = `${gender_text}, ${category_text}`;
 
                 audioItem.appendChild(audio);
                 audioItem.appendChild(label);
