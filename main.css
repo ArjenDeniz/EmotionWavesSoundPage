@@ -3,14 +3,14 @@
 }
 body{
     font-size: 18px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 h1,h2{
     color: var(--primary-color);
 }
 .limited{
     margin: auto;
-    max-width: 1024px;
+    max-width: 625px;
     padding: 10px;
     width: 90%;
 }
@@ -19,9 +19,10 @@ h1,h2{
     max-height: 350px;
 }
 .description{
+    max-width: 100%;
     margin-bottom: 10px;
     text-align: justify;
-    margin-top: 0;
+    margin-top: 5px;
 }
 .filter-container{
     display: grid;
@@ -119,11 +120,16 @@ select {
 
 
 .share-button {
-    padding: 10px 20px;
+    padding: 5px 5px;
+    width: 15px;
+    height: 15px;
     background-color: var(--primary-color);
+    display:flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 50%;
     cursor: pointer;
     font-size: 18px;
 }
@@ -132,4 +138,20 @@ select {
     transition: 0.3s color;
     background-color: white;
     color: var(--primary-color);
+}
+
+footer{
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 25px;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
 }

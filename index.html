@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 </head>
 
 <body class="limited">
@@ -22,7 +22,7 @@
     contagious laughter! This collection of laughter recordings, contributed by people like you, offers a glimpse into the
     world of contagious lasughter.
     <br></br>
-    Choose the gender of the laugher and contagiousness category to start playing laughter clips.
+    Choose the sex of the laugher and contagiousness category to start playing laughter clips.
     </p>
 
     <!-- Filters for audio files -->
@@ -49,9 +49,6 @@
     </select>
     </div>
 
-    <section class="share-wrapper">
-        <button id="shareButton" class="share-button">Share</button>
-    </section>
     </section>
 
 
@@ -65,6 +62,17 @@
         <input type='button' class='confirmButton' value='Ok'>
     </div>
 
+    <footer>
+        <div class="share-button twitter" onclick="shareToTwitter()">
+            <i class="fab fa-twitter"></i>
+        </div>
+        <div class="share-button facebook" onclick="shareToFacebook()">
+            <i class="fab fa-facebook-f"></i>
+        </div>
+        <div class="share-button linkedin" onclick="shareToLinkedIn()">
+            <i class="fab fa-linkedin-in"></i>
+        </div>
+    </footer>
     <script type="text/javascript">
         const customAlert = document.querySelector('.customAlert');
         const confirmButton = customAlert.querySelector('.confirmButton');
@@ -123,7 +131,12 @@
                 audio.src = `audio/${file.id}`;
 
                 const label = document.createElement('p');
-                label.textContent = `${file.id.replace('.wav', '')} (${file.gender}, ${file.category})`;
+                if (file.gender === "women") {
+                    gender_text = "Female"
+                } else{
+                    gender_text = "Male"
+                }
+                label.textContent = `${gender_text}, ${file.category}`;
 
                 audioItem.appendChild(audio);
                 audioItem.appendChild(label);
@@ -131,7 +144,7 @@
                 // Trigger the animation after a short delay
                 setTimeout(() => {
                     audioItem.classList.add('show');
-                }, 50 * index);
+                }, 500 * index);
             });
         }
 
@@ -145,30 +158,22 @@
 
 
         // Share functionality
-        const shareButton = document.getElementById('shareButton');
+        function shareToTwitter() {
+            const text = encodeURIComponent("Check out this collection of contagious laughter!");
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        }
 
-        shareButton.addEventListener('click', async () => {
-            const shareData = {
-                title: 'Contagious Laughter',
-                text: 'Check out this collection of contagious laughter!',
-                url: window.location.href
-            };
+        function shareToFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        }
 
-            if (navigator.share) {
-                try {
-                    await navigator.share(shareData);
-                } catch (err) {
-                    showCustomAlert('Error: ' + err);
-                }
-            } else {
-                // Fallback for browsers that don't support Web Share API
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    showCustomAlert('Link copied to clipboard!');
-                }, () => {
-                    showCustomAlert('Failed to copy link.');
-                });
-            }
-        });
+        function shareToLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent("Contagious Laughter");
+            window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`, '_blank');
+        }
     </script>
 </body>
 
