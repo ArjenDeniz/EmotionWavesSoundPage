@@ -2,7 +2,7 @@
 --primary-color: #577495;
 }
 body{
-    font-size: 16px;
+    font-size: 18px;
     font-family: 'Inter', sans-serif;
 }
 h1,h2{
@@ -15,11 +15,13 @@ h1,h2{
     width: 90%;
 }
 .img{
-    width: 100%;
+    max-width: 100%;
+    max-height: 350px;
 }
 .description{
     margin-bottom: 10px;
     text-align: justify;
+    margin-top: 0;
 }
 .filter-container{
     display: grid;
