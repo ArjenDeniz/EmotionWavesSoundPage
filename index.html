@@ -17,7 +17,7 @@
 <body class="limited">
     <h1>Contagious Laughter</h1>
     <h2>Listen and Discover What Makes Laughter Spread</h2>
-    <img src="laughter_types.jpg" alt="" class="img">
+    <img src="cont.png" alt="" class="img">
     <p class="description">Ever found yourself laughing along with others, even when you didn't quite catch the joke? That's the power of
     contagious laughter! This collection of laughter recordings, contributed by people like you, offers a glimpse into the
     world of contagious laughter.
@@ -41,7 +41,6 @@
     <label for="categoryFilter">Category:</label>
     <select id="categoryFilter">
         <option value="x" disabled selected>Select an option</option>
-        <option value="">All</option>
         <option value="verylow">Very low</option>
         <option value="low">Low</option>
         <option value="high">High</option>
@@ -108,7 +107,7 @@
             // Filter the audio files based on selected criteria
             const filteredFiles = audioFiles.filter(file => {
                 return (selectedGender === '' || file.gender === selectedGender) &&
-                    (selectedCategory === '' || file.category === selectedCategory);
+                    (file.category === selectedCategory);
             });
 
             // Create audio players for filtered files
