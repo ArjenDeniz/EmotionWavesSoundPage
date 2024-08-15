@@ -49,7 +49,9 @@
     </select>
     </div>
 
-
+    <section class="share-wrapper">
+        <button id="shareButton" class="share-button">Share</button>
+    </section>
     </section>
 
 
@@ -141,6 +143,32 @@
         // Initial population of the dropdown
         updateAudioPlayers();
 
+
+        // Share functionality
+        const shareButton = document.getElementById('shareButton');
+
+        shareButton.addEventListener('click', async () => {
+            const shareData = {
+                title: 'Contagious Laughter',
+                text: 'Check out this collection of contagious laughter!',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                } catch (err) {
+                    showCustomAlert('Error: ' + err);
+                }
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    showCustomAlert('Link copied to clipboard!');
+                }, () => {
+                    showCustomAlert('Failed to copy link.');
+                });
+            }
+        });
     </script>
 </body>
 
